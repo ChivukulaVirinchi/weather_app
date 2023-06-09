@@ -1,0 +1,474 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link href="/dist/output.css" rel="stylesheet">
+
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+
+
+
+</head>
+
+
+<body class="flex h-screen bg-slate-500">
+  <div class="w-11/12 m-auto md:flex">
+    <div class="grid w-full p-6 bg-white md:w-1/3 gap-y-8 md:rounded-l-xl rounded-t-xl md:rounded-tr-none">
+      <form>
+        <div class="relative w-full pb-0 text-gray-600">
+          <button onclick="fun1()" id="btn1" type="button" class="absolute mt-3 ml-4 mr-4">
+            <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+              viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+              <path
+                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z">
+              </path>
+            </svg>
+          </button>
+          <p id="output1"></p>
+          <input type="text" id="tbuser" placeholder="Search for places..."
+            class="w-full h-10 px-10 pr-5 text-sm placeholder-gray-700 bg-gray-100 rounded-full dark:bg-darksearch focus:outline-none focus:ring-2 focus:placeholder-gray-500">
+        </div>
+      </form>
+
+      <img class="mx-auto rounded-lg" id="pic">
+
+
+      <div class="flex flex-col pb-4 border-b border-gray-300 md:pb-8">
+        <span class="text-6xl text-center md:text-7xl text-neutral-800" id="temp"></span>
+        <span id="feelslike"></span>
+
+        <div class="flex justify-center text-xl md:mt-4 md:text-2xl">
+          <span class="font-medium text-gray-700" id="p1"></span>
+          <span class="ml-4 text-gray-500" id="p2"></span></div>
+      </div>
+
+      <div class="float-left md:mt-4">
+        <p class="text-center md:text-left md:my-2">
+          <img class="inline w-12 h-12" id="svg">
+          <span id="desc" class="inline ml-2 text-lg text-gray-700"></span>
+          <p>
+
+            <p class="text-center md:text-left">
+              <img class="inline w-12 h-12" src="/amcharts_weather_icons_1.0.0/animated/308.svg">
+              <span class="inline ml-2 text-lg text-gray-600">Rain - <span class="font-bold text-gray-800"
+                  id="rain"></span>%</span>
+            </p>
+
+
+      </div>
+
+      <div class="relative hidden md:block">
+        <img class="object-cover w-full h-32 mx-auto rounded-xl" id="pphoto" src="">
+
+        <div
+          class="absolute z-0 flex items-center justify-center w-full h-full -translate-x-1/2 -translate-y-1/2 bg-gray-900 rounded-xl opacity-30 top-1/2 left-1/2">
+          <p class="relative z-10 text-lg text-white" id="region"></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w-full p-6 bg-gray-100 md:w-2/3 md:rounded-r-xl rounded-b-xl md:rounded-bl-none">
+
+      <div class="hidden lg:block"> <span class="text-2xl font-semibold lg:ml-4 text-slate-900">This Week</span>
+
+        <div class="grid grid-cols-7 mt-4 lg:mx-4 gap-x-2">
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+          <div class="p-2 bg-white rounded-md">
+            <h1 class="text-lg font-medium text-center text-gray-600">Sun</h1>
+            <svg class="w-12 h-12 mx-auto fill-amber-400 stroke-amber-400" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <p class="text-center"><span class="font-bold text-gray-800">15°</span>
+              <span class="font-light text-gray-500">-3°</span></p>
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+
+      <div class="md:mt-8">
+        <span class="text-xl font-semibold md:text-2xl lg:ml-6 text-slate-900">Today's Highlights</span>
+
+        <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-3 gap -4 lg:ml-6">
+          <div class="p-4 bg-white rounded-lg">
+            <h1 class="text-center text-gray-400 font-extralight">UV Index</h1>
+            <div class="flex items-end justify-center">
+
+              <h1 class="text-2xl font-medium text-gray-700 lg:text-4xl" id="uv_index">
+              </h1>
+              <span class="ml-1 text-sm text-gray-500 font-extralight">mW/m<sup>2</sup></span>
+            </div>
+            <div class="flex items-center justify-center mt-2">
+
+              <svg id="up" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+              </svg>
+
+              <svg id="down" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7.5 15h2.25m8.024-9.75c.011.05.028.1.052.148.591 1.2.924 2.55.924 3.977a8.96 8.96 0 01-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398C20.613 14.547 19.833 15 19 15h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 00.303-.54m.023-8.25H16.48a4.5 4.5 0 01-1.423-.23l-3.114-1.04a4.5 4.5 0 00-1.423-.23H6.504c-.618 0-1.217.247-1.605.729A11.95 11.95 0 002.25 12c0 .434.023.863.068 1.285C2.427 14.306 3.346 15 4.372 15h3.126c.618 0 .991.724.725 1.282A7.471 7.471 0 007.5 19.5a2.25 2.25 0 002.25 2.25.75.75 0 00.75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 002.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384" />
+              </svg>
+
+              <span class="ml-2 text-sm font-light text-gray-700 md:text-base" id="cmt"></span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg">
+            <h1 class="text-center text-gray-400 font-extralight">Wind Speed</h1>
+            <div class="flex items-end justify-center">
+              <h1 class="text-2xl font-medium text-gray-700 lg:text-4xl" id="wind_speed">
+              </h1>
+              <span class="ml-1 text-sm text-gray-500 font-extralight">km/h</span>
+            </div>
+            <div class="flex items-center justify-center">
+              <img class="w-6 h-6 mr-2" src="/amcharts_weather_icons_1.0.0/animated/weather_sagittarius.svg">
+              <span class="text-2xl font-medium text-gray-700 lg:text-3xl" id="wind_direction"></span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg">
+            <h1 class="text-center text-gray-400 font-extralight">Humidity</h1>
+            <div class="flex items-end justify-center">
+              <h1 class="text-2xl font-medium text-gray-700 lg:text-4xl" id="humidity">
+              </h1>
+            </div>
+            <div class="flex items-center justify-center mt-2">
+
+              <svg id="up1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+              </svg>
+
+              <svg id="down1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7.5 15h2.25m8.024-9.75c.011.05.028.1.052.148.591 1.2.924 2.55.924 3.977a8.96 8.96 0 01-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398C20.613 14.547 19.833 15 19 15h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 00.303-.54m.023-8.25H16.48a4.5 4.5 0 01-1.423-.23l-3.114-1.04a4.5 4.5 0 00-1.423-.23H6.504c-.618 0-1.217.247-1.605.729A11.95 11.95 0 002.25 12c0 .434.023.863.068 1.285C2.427 14.306 3.346 15 4.372 15h3.126c.618 0 .991.724.725 1.282A7.471 7.471 0 007.5 19.5a2.25 2.25 0 002.25 2.25.75.75 0 00.75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 002.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384" />
+              </svg>
+
+              <span class="ml-2 text-sm font-light text-gray-700 md:text-base" id="cmt1"></span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg">
+            <h1 class="text-center text-gray-400 font-extralight">Visibility</h1>
+            <div class="flex items-end justify-center">
+
+              <h1 class="text-2xl font-medium text-gray-700 lg:text-4xl" id="visibility">
+              </h1>
+              <span class="ml-1 text-sm text-gray-500 font-extralight">km</span>
+            </div>
+            <div class="flex items-center justify-center mt-2">
+
+              <svg id="up2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+              </svg>
+
+              <svg id="down2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7.5 15h2.25m8.024-9.75c.011.05.028.1.052.148.591 1.2.924 2.55.924 3.977a8.96 8.96 0 01-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398C20.613 14.547 19.833 15 19 15h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 00.303-.54m.023-8.25H16.48a4.5 4.5 0 01-1.423-.23l-3.114-1.04a4.5 4.5 0 00-1.423-.23H6.504c-.618 0-1.217.247-1.605.729A11.95 11.95 0 002.25 12c0 .434.023.863.068 1.285C2.427 14.306 3.346 15 4.372 15h3.126c.618 0 .991.724.725 1.282A7.471 7.471 0 007.5 19.5a2.25 2.25 0 002.25 2.25.75.75 0 00.75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 002.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384" />
+              </svg>
+
+              <span class="ml-2 text-sm font-light text-gray-700 md:text-base" id="cmt2"></span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg">
+            <h1 class="text-center text-gray-400 font-extralight">Cloud Cover</h1>
+            <div class="">
+              <h1 class="text-2xl font-medium text-center text-gray-700 lg:text-4xl" id="cloudcover"></h1>
+              <div class="flex items-center justify-center mt-2">
+                <span id="ccdesc"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg">
+            <h1 class="text-sm text-center text-gray-400 font-extralight lg:text-base">Pressure</h1>
+            <div class="flex items-end justify-center mt-1">
+              <h1 class="text-2xl font-medium text-gray-700 lg:text-4xl" id="pressure"></h1>
+              <span class="ml-1 text-xs text-gray-500 lg:text-sm font-extralight">Millibar</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<script>
+  const txt1 = document.getElementById("tbuser");
+  const btn1 = document.getElementById("btn1");
+
+  function fun1() {
+    var query = txt1.value;
+    var paramsWeather = {
+      query: {
+        access_key: "c4eb6b227f62de34ef6eb976f75edf82",
+        query: query
+      }
+    };
+
+    fetch('http://api.weatherstack.com/current' + "?" + new URLSearchParams(paramsWeather.query))
+      .then(res => res.json())
+      .then(data => {
+        if (data.current.weather_code == 113) {
+          var i = 113;
+          if (data.current.is_day == "yes") {
+            var k = 'm';
+          } else {
+            var k = 'n';
+          }
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/' + i + k + '.svg';
+        } else if (data.current.weather_code == 116) {
+          var i = 116;
+          if (data.current.is_day == "yes") {
+            var k = 'm';
+          } else {
+            var k = 'n'
+          }
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/' + i + k + '.svg';
+        } else if (data.current.weather_code == 200) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/200.svg';
+        } else if (data.current.weather_code == 122 || data.current.weather_code == 119) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/119.svg';
+        } else if (data.current.weather_code == 284) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/284.svg';
+        } else if (data.current.weather_code == 296 || data.current.weather_code == 293 || data.current
+          .weather_code ==
+          266 ||
+          data.current.weather_code == 263 || data.current.weather_code == 176 || data.current.weather_code == 143) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/296.svg';
+        } else if (data.current.weather_code == 308 || data.current.weather_code == 305) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/308.svg';
+        } else if (data.current.weather_code == 248 || data.current.weather_code == 260) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/248.svg';
+        } else if (data.current.weather_code == 230 || data.current.weather_code == 227 || data.current
+          .weather_code ==
+          185 ||
+          data.current.weather_code == 182 || data.current.weather_code == 179 || data.current.weather_code == 311) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/230.svg';
+        } else if (data.current.weather_code == 281) {
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/281.svg';
+        } else if (data.current.weather_code == 302 || data.current.weather_code == 299) {
+          var i = 302;console
+          if (data.current.is_day == "yes") {
+            var k = 'm';
+          } else {
+            var k = 'n'
+          }
+          document.getElementById("svg").src = '/amcharts_weather_icons_1.0.0/animated/' + i + k + '.svg';
+        }
+
+
+        document.getElementById("temp").innerHTML = data.current.temperature + "°C".sup();
+        document.getElementById("desc").innerHTML = data.current.weather_descriptions;
+        document.getElementById("rain").innerHTML = data.current.precip;
+        document.getElementById("pic").src = data.current.weather_icons;
+        document.getElementById("region").innerHTML = data.location.region + "," + data.location.country;
+        document.getElementById("wind_speed").innerHTML = data.current.wind_speed;
+        document.getElementById("wind_direction").innerHTML = data.current.wind_dir;
+        document.getElementById("uv_index").innerHTML = data.current.uv_index;
+        document.getElementById("pressure").innerHTML = data.current.pressure;
+        document.getElementById("humidity").innerHTML = data.current.humidity +
+          '<span class="ml-1 text-sm text-gray-500 align-top font-extralight">%</span>';
+        document.getElementById("visibility").innerHTML = data.current.visibility;
+        document.getElementById("cloudcover").innerHTML = data.current.cloudcover +
+          '<span class="ml-1 text-sm text-gray-500 align-top font-extralight">%</span>';
+        if (data.current.uv_index >= 0 && data.current.uv_index <= 2) {
+          document.getElementById("up").classList = ' p-1 rounded-full bg-green-200 stroke-green-700 h-6 w-6';
+          document.getElementById("down").classList = ' hidden';
+          document.getElementById("cmt").innerHTML = 'Excellent';
+        } else if (data.current.uv_index > 2 && data.current.uv_index <= 5) {
+          document.getElementById("up").classList = ' p-1 rounded-full bg-yellow-200 stroke-yellow-700 h-6 w-6';
+          document.getElementById("down").classList = ' hidden';
+          document.getElementById("cmt").innerHTML = 'Moderate';
+        } else if (data.current.uv_index > 5 && data.current.uv_index <= 7) {
+          document.getElementById("up").classList = ' hidden';
+          document.getElementById("down").classList = ' p-1 rounded-full bg-orange-200 stroke-orange-700 h-6 w-6';
+          document.getElementById("cmt").innerHTML = 'High';
+        } else if (data.current.uv_index > 7 && data.current.uv_index <= 10) {
+          document.getElementById("up").classList = ' hidden';
+          document.getElementById("down").classList = ' p-1 rounded-full bg-red-200 stroke-red-700 h-6 w-6';
+          document.getElementById("cmt").innerHTML = 'Very High';
+        } else if (data.current.uv_index > 10) {
+          document.getElementById("up").classList = ' hidden';
+          document.getElementById("down").classList = ' p-1 rounded-full bg-violet-200 stroke-violet-700 h-6 w-6';
+          document.getElementById("cmt").innerHTML = 'Extreme';
+        }
+        if (data.current.humidity >= 30 && data.current.humidity <= 60) {
+          document.getElementById("up1").classList = ' p-1 rounded-full bg-green-200 stroke-green-700 h-6 w-6';
+          document.getElementById("down1").classList = ' hidden';
+          document.getElementById("cmt1").innerHTML = 'Good';
+        } else {
+          document.getElementById("up1").classList = ' p-1 rounded-full bg-yellow-200 stroke-yellow-700 h-6 w-6';
+          document.getElementById("down1").classList = ' hidden';
+          document.getElementById("cmt1").innerHTML = 'Average';
+        }
+        if (data.current.visibility >= 16) {
+          document.getElementById("up2").classList = ' p-1 rounded-full bg-green-200 stroke-green-700 h-6 w-6';
+          document.getElementById("down2").classList = ' hidden';
+          document.getElementById("cmt2").innerHTML = 'Good';
+        } else if (data.current.visibility < 16 && data.current.visibility > 1) {
+          document.getElementById("up2").classList = ' p-1 rounded-full bg-yellow-200 stroke-yellow-700 h-6 w-6';
+          document.getElementById("down2").classList = ' hidden';
+          document.getElementById("cmt2").innerHTML = 'Average';
+        } else if (data.current.visibility <= 1) {
+          document.getElementById("up2").classList = ' hidden';
+          document.getElementById("down2").classList = ' p-1 rounded-full bg-red-200 stroke-red-700 h-6 w-6';
+          document.getElementById("cmt2").innerHTML = 'Very Bad';
+        }
+
+        if (data.current.cloudcover <= 20) {
+          document.getElementById("ccdesc").classList =
+            'bg-green-200 px-3 py-1 text-green-700 text-center rounded-full';
+          document.getElementById("ccdesc").innerHTML = 'Clear';
+        } else if (data.current.cloudcover > 20 && data.current.cloudcover < 50) {
+          document.getElementById("ccdesc").classList =
+            'bg-yellow-200 px-3 py-1 text-yellow-700 text-center rounded-full';
+          document.getElementById("ccdesc").innerHTML = 'Average';
+        } else {
+          document.getElementById("ccdesc").classList =
+            'bg-red-200 px-3 py-1 text-red-700 text-center rounded-full md:text-base text-sm';
+          document.getElementById("ccdesc").innerHTML = 'Poor';
+        }
+        if (data.current.feelslike != data.current.temperature) {
+          document.getElementById("feelslike").classList = 'text-lg text-center text-neutral-400 mt-1 -ml-6';
+          document.getElementById("feelslike").innerHTML = 'Feels like ' + '<b class="text-lg text-neutral-600">' +
+            data
+            .current.feelslike + "°C".sup() + '</b>';
+        } else {
+          document.getElementById("feelslike").classList = 'hidden';
+        }
+        const format1 = "dddd"
+        const format2 = "LT"
+        var date1 = new Date(data.location.localtime);
+        Day = moment(date1).format(format1);
+        document.getElementById("p1").innerHTML = Day + ",";
+        Time = moment(date1).format(format2);
+        document.getElementById("p2").innerHTML = Time;
+
+        var params = {
+          query: {
+            client_id: "yVTkA0P7vHbHIvy22LMO6nu9-aAMv4vFORGF1ejeSOA",
+            page: 1,
+            query: data.location.region+'city',
+          }
+        };
+
+        fetch('https://api.unsplash.com/photos/' + "?" + new URLSearchParams(params.query))
+          .then(res => res.json())
+          .then(img => {
+            document.getElementById("pphoto").src = img[0].urls.regular;
+          })
+
+      })
+  }
+  txt1.addEventListener("keypress", function (event) {
+    // Check if the pressed key is the enter key
+    if (event.keyCode == 13 || event.key == "Enter") {
+      // Prevent the default behavior of the enter key
+      event.preventDefault();
+      // Simulate a click on the button element
+      btn1.click();
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</html>
